@@ -7,20 +7,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.gmu.patientcare.model.*;
-import edu.gmu.patientcare.repository.AppointmentRepository;
-import edu.gmu.patientcare.repository.PatientRepository;
-import edu.gmu.patientcare.repository.PrescriptionRepository;
+import edu.gmu.patientcare.repository.*;
 
 @Service
 public class QueryService {
     @Autowired
     PatientRepository patientRepo;
     @Autowired
+    DoctorRepository doctorRepo;
+    @Autowired
     AppointmentRepository appointmentRepo;
     @Autowired
+    LabRepository labRepo;
+    @Autowired
     PrescriptionRepository prescriptionRepo;
+    @Autowired
+    LabResultRepository labResultRepo;
 
-    public List<Prescription> findPrescription(String name) {
+    public List<Prescription> findPrescriptionForPatient(String name) {
         List<Patient> patients = patientRepo.findByName(name);
         List<Appointment> appointments = new ArrayList<>();
         List<Prescription> prescriptions = new ArrayList<>();
@@ -30,5 +34,17 @@ public class QueryService {
             prescriptions.addAll(prescriptionRepo.findByAppointmentId(appointment.getId()));
             
         return prescriptions;
+    }
+
+    public List<LabResult> findResultForPatient(String name) {
+        List<Patient> patients = patientRepo.findByName(name);
+        List<Lab> labs = new ArrayList<>();
+        List<LabResult> labResults = new ArrayList<>();
+        for(Patient patient: patients)
+            labs.addAll(labRepo.findByPatientId(patient.getId()));
+        for(Lab lab: labs)
+            labResults.addAll(labResultRepo.findByLabId(lab.getId()));
+
+        return labResults;
     }
 }

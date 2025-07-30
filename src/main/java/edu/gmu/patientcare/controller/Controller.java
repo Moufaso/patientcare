@@ -18,10 +18,17 @@ public class Controller {
     @Autowired
     private QueryService query;
 
-    @GetMapping("/patient/{name}")
-    public ResponseEntity<?> getPrescriptionsByPatient(@PathVariable("name") String name) {
-        List<Prescription> prescriptions = query.findPrescription(name);
+    @GetMapping("/prescription/{name}")
+    public ResponseEntity<?> getPrescriptionForPatient(@PathVariable("name") String name) {
+        List<Prescription> prescriptions = query.findPrescriptionForPatient(name);
         
         return new ResponseEntity<List<Prescription>>(prescriptions, HttpStatus.OK);
+    }
+
+    @GetMapping("/result/{name}")
+    public ResponseEntity<?> getLabReslutForPatient(@PathVariable("name") String name) {
+        List<LabResult> labResults = query.findResultForPatient(name);
+        
+        return new ResponseEntity<List<LabResult>>(labResults, HttpStatus.OK);
     }
 }

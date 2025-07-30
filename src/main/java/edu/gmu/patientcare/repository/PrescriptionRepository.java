@@ -1,7 +1,6 @@
 package edu.gmu.patientcare.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
-
 import edu.gmu.patientcare.model.Prescription;
 import java.util.List;
 
