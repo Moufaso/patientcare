@@ -28,7 +28,7 @@ public class QueryService {
             appointments.addAll(appointmentRepo.findByPatientId(patient.getId()));
         for(Appointment appointment : appointments)
             prescriptions.addAll(prescriptionRepo.findByAppointmentId(appointment.getId()));
-        
+            
         return prescriptions;
     }
 }
