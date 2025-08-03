@@ -24,7 +24,9 @@ public class QueryService {
     @Autowired
     LabResultRepository labResultRepo;
 
-
+    /*
+     * Return list of prescriptions based on patient name
+     */
     public List<Prescription> findPrescriptionForPatient(String name) {
         List<Patient> patients = patientRepo.findByName(name);
         List<Appointment> appointments = new ArrayList<>();
