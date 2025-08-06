@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class Doctor {
     @Id
     private String _id;
+    @Field(name = "id")
     private int id;
     private String name;
     private String specialization;

@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class Nurse {
     @Id
     private String _id;
+    @Field(name = "id")
     private int id;
     private String name;
     @Field(name = "department_id")

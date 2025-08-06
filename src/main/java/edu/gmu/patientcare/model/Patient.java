@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class Patient {
     @Id
     private String _id;
+    @Field(name = "id") // custom ID
     private int id;
     private String name;
     @Field(name = "blood_type")

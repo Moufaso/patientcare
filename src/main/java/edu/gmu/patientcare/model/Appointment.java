@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class Appointment {
     @Id
     private String _id;
+    @Field(name = "id")
     private int id;
     @Field(name = "patient_id")
     private int patientId;
